@@ -29,7 +29,7 @@ const TransactionForm = ({
   const fetchCategories = useCallback(async () => {
     setIsLoadingCategories(true);
     try {
-      const res = await axios.get('http://localhost:5000/api/categories');
+      const res = await axios.get('https://personal-finance-visualizer-app.onrender.com/api/categories');
       setLocalCategories(res.data);
       if (typeof setCategories === 'function') {
         setCategories(res.data);
@@ -82,7 +82,7 @@ const TransactionForm = ({
       if (transactionToEdit) {
         // Update existing transaction
         const res = await axios.put(
-          `http://localhost:5000/api/transactions/${transactionToEdit._id}`,
+          `https://personal-finance-visualizer-app.onrender.com/api/transactions/${transactionToEdit._id}`,
           transaction
         );
         setTransactions((prev) =>
@@ -93,7 +93,7 @@ const TransactionForm = ({
         if (closeModal) closeModal(); // Close modal after submitting
       } else {
         // Create a new transaction
-        const res = await axios.post('http://localhost:5000/api/transactions', transaction);
+        const res = await axios.post('https://personal-finance-visualizer-app.onrender.com/api/transactions', transaction);
         setTransactions((prev) => [res.data, ...prev]);
         toast.success('Transaction added');
       }
@@ -116,7 +116,7 @@ const TransactionForm = ({
     }
     
     try {
-      const res = await axios.post('http://localhost:5000/api/categories', { 
+      const res = await axios.post('https://personal-finance-visualizer-app.onrender.com/api/categories', { 
         category: newCategory.trim() 
       });
       setLocalCategories([...categories, newCategory.trim()]);
